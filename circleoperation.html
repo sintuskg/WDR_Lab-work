@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		/*--- script to find out area of the circle ----*/
+		//input of radius from user 
+		const radius = parseFloat(prompt("Enter radius of circle(in cm) : ",0));
+		
+		if(isNaN(radius))
+		{
+			alert("It is not a numeric value");
+		}
+		else
+		{
+			document.write("----- Circle ----");
+			if(radius < 0)
+			{
+				document.write("<br>Radius : "+radius+" cm");
+				document.write("<br><font color=red> Radius cannot be negative. CIrcle not possible</font>");
+			}
+			else
+			{
+				//calculating area of circle
+				const area = Math.PI * radius * radius;
+				//displaying data to the user
+			
+				document.write("<br>Radius : "+radius+" cm");
+				document.write("<br>Area : "+area.toFixed(2)+" sq.cm");
+			}
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

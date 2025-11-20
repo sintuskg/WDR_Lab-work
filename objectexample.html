@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <script>
+            /*--- Creating object ----*/
+            let number = {
+                num1 : 20,
+                num2 : 40,
+                addition : function(){
+                    document.write("<br> Sum of "+this.num1+" and "+this.num2+" is : "+(this.num1 + this.num2));
+                },
+                difference : function(){
+                    document.write("<br> Difference between "+this.num1+" and "+this.num2+" is : "+(this.num1 - this.num2));
+                },
+                product : function(){
+                    document.write("<br> Product of "+this.num1+" and "+this.num2+" is : "+(this.num1 * this.num2));
+                },
+            }
+
+            // accessing data of object
+            document.write("First Number : "+number.num1);
+            document.write("<br> Second Number : "+number.num2);
+            //calling addition method
+            number.addition();
+            //calling difference method
+            number.difference();
+            //calling product method
+            number.product();
+
+            // to update data of object 
+            number.num1 = 120
+            number.num2 = 140
+            // fincding addition
+            number.addition();
+            //finding difference
+            number.difference();
+            //finding product
+            number.product();
+        </script>
+    </head>
+</html>

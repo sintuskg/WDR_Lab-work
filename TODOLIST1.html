@@ -50,14 +50,7 @@
 			//setting function on click event
 			complete_button.onclick = function()
 			{
-				// fetching id of the button
-				var btn_id = this.id
-				//splitting the btn_id string based on '-'
-				var data = btn_id.split('-');
-				// id of the list item 
-				li_id = "list-"+data[1];
-				//setting text color of li tag as green
-				document.getElementById(li_id).style.color="green";
+				//working of function
 			}
 			// creating a button to display delete
 			var delete_button = document.createElement("button");
@@ -68,17 +61,7 @@
 			//setting function on click event
 			delete_button.onclick = function()
 			{
-				// fetching id of the button
-				var btn_id = this.id
-				//splitting the btn_id string based on '-'
-				var data = btn_id.split('-');
-				// id of the list item 
-				li_id = "list-"+data[1];
-				//deleting element from array
-				delete task_array[data[1]];
-				//deleting li
-				document.getElementById(li_id).remove();
-				console.log(task_array);
+				//working of function
 			}
 			//appending button to the listitem
 			listitem.appendChild(complete_button);

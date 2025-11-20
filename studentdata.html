@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <script>
+            /*--- Definining a  constructor function ---*/
+            function Student(name,age,standard)
+            {
+                this.name = name;
+                this.age = age;
+                this.standard = standard;
+            }
+
+            //creating objects
+            let s1 = new Student('Akash',17,'BCA');
+            let s2 = new Student('Anil',15,'10th');
+            let s3 = new Student('Rahul',16,'12th');
+            document.write("First Student : ");
+            document.write("<br> Name : "+s1.name);
+            document.write("<br> Standard : "+s1.standard);
+            document.write("<br> Age : "+s1.age+" year");
+            document.write("<br>---------------------------");
+            document.write("<br>Second Student : ");
+            document.write("<br> Name : "+s2.name);
+            document.write("<br> Standard : "+s2.standard);
+            document.write("<br> Age : "+s2.age+" year");
+            document.write("<br>---------------------------");
+            document.write("<br> Third Student : ");
+            document.write("<br> Name : "+s3.name);
+            document.write("<br> Standard : "+s3.standard);
+            document.write("<br> Age : "+s3.age+" year");
+            document.write("<br>---------------------------");
+
+        </script>
+    </head>
+</html>

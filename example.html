@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script>
+            /*--- arrow function for addition of two numbers ----*/
+            let addition = (a,b) => a+b;
+            /*--- arrow function for difference of two number numbers ----*/
+            let difference = (a,b) => a-b;
+            /*---- Defining  function expression for finding greatest number between two numbers*/
+            let greatestNumber = function(a,b){
+                if(a > b)
+                {
+                    document.write("<br>"+a+" is greater than "+b);
+                }
+                else if(b > a)
+                {
+                    document.write("<br>"+b+" is greater than "+a);
+                }
+                else{
+                    document.write("<br>"+a+" and "+b+" are equal");
+                }
+            }
+            /*--------------------------------------------------------------*/
+            /*---- finding sum of 50 and 40 ---*/
+            document.write("Sum of 50 and 40 is :"+addition(50,40));
+            /*finding difference between 30 and 70 ----*/
+            document.write("<br>Difference between 30 and 70 is : "+difference(30,70));
+            /*--- greater number between 120 and 150 ----*/
+            greatestNumber(120,150);
+        </script>
+    </head>
+</html>
