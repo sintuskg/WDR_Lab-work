@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple intrest</title>
+  </head>
+  <body>
+    <h2>----------Simple Intrest-----------</h2>
+    
+    Principal Amount :
+    <input
+      type="number"
+      id="Principal_Amount"
+      value="Principal Amount"
+      step="0.01"
+      required
+    /><br /><br />
+
+    Anual Rate :
+    <input
+      type="number"
+      id="Anual_rate"
+      value="Anual Rate"
+      step="0.01"
+      required
+    /><br /><br />
+
+    Time :
+    <input
+      type="number"
+      id="Time_Year"
+      value="Anual Rate"
+      step="0.01"
+      required
+    /><br /><br />
+
+    <input type="button" value="Simple Intrest" onclick="simple_intrest()" />
+
+    <p id="para"></p>
+    
+  </body>
+
+  <script>
+    function simple_intrest() {
+      const principal_amount = parseFloat(
+        document.getElementById("Principal_Amount").value
+      );
+      const anual_rate = parseFloat(
+        document.getElementById("Anual_rate").value
+      );
+      const time_Year = parseFloat(document.getElementById("Time_Year").value);
+
+      if (isNaN(principal_amount) || isNaN(anual_rate) || isNaN(time_Year)) {
+        alert(`Please enter the numeric value.`);
+      } else {
+        const intrest = (principal_amount * anual_rate * time_Year) / 100;
+
+        document.getElementById("para").innerText = `The SI : ${intrest.toFixed(3)}`;
+      }
+    }
+  </script>
+</html>

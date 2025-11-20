@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Builder</title>
+
+  <style>
+    /* 🎨 GENERAL PAGE STYLING */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg, #f0f4ff, #ffffff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #2a2a72;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    /* 🧾 FORM SECTION */
+    #resume-form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #2a2a72;
+      box-shadow: 0 0 5px rgba(42, 42, 114, 0.3);
+    }
+
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 10px;
+      background: #2a2a72;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #4f46e5;
+    }
+
+    /* 🧩 GENERATED RESUME SECTION */
+    #resume-output {
+      display: none;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 700px;
+    }
+
+    #resume-output h2 {
+      text-align: center;
+      color: #2a2a72;
+    }
+
+    .section {
+      margin-top: 1rem;
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+    }
+
+    .section h3 {
+      color: #4f46e5;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-download {
+      background: #4f46e5;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    /* 📱 RESPONSIVENESS */
+    @media (max-width: 600px) {
+      #resume-form, #resume-output {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧾 Resume Builder</h1>
+
+  <!-- 🧩 FORM FOR USER INPUT -->
+  <form id="resume-form">
+    <label>Full Name:</label>
+    <input type="text" id="name" placeholder="Enter your full name" required>
+
+    <label>Email:</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+
+    <label>Phone:</label>
+    <input type="text" id="phone" placeholder="Enter your phone number" required>
+
+    <label>Education:</label>
+    <textarea id="education" placeholder="Enter your education details" required></textarea>
+
+    <label>Work Experience:</label>
+    <textarea id="experience" placeholder="Enter your work experience" required></textarea>
+
+    <label>Skills:</label>
+    <textarea id="skills" placeholder="List your skills (comma separated)" required></textarea>
+
+    <button type="button" id="generate-resume">Generate Resume</button>
+  </form>
+
+  <!-- 📄 GENERATED RESUME PREVIEW -->
+  <div id="resume-output">
+    <h2 id="r-name"></h2>
+    <p id="r-email"></p>
+    <p id="r-phone"></p>
+
+    <div class="section">
+      <h3>🎓 Education</h3>
+      <p id="r-education"></p>
+    </div>
+
+    <div class="section">
+      <h3>💼 Work Experience</h3>
+      <p id="r-experience"></p>
+    </div>
+
+    <div class="section">
+      <h3>⚙️ Skills</h3>
+      <p id="r-skills"></p>
+    </div>
+
+    <button class="btn-download" id="download-pdf">⬇ Download Resume</button>
+  </div>
+
+  <script>
+    // 🎯 GET ELEMENTS
+    const form = document.getElementById("resume-form");
+    const output = document.getElementById("resume-output");
+
+    const nameField = document.getElementById("name");
+    const emailField = document.getElementById("email");
+    const phoneField = document.getElementById("phone");
+    const eduField = document.getElementById("education");
+    const expField = document.getElementById("experience");
+    const skillsField = document.getElementById("skills");
+
+    // 📄 OUTPUT FIELDS
+    const rName = document.getElementById("r-name");
+    const rEmail = document.getElementById("r-email");
+    const rPhone = document.getElementById("r-phone");
+    const rEducation = document.getElementById("r-education");
+    const rExperience = document.getElementById("r-experience");
+    const rSkills = document.getElementById("r-skills");
+
+    // 🧠 FUNCTION TO GENERATE RESUME
+    document.getElementById("generate-resume").addEventListener("click", () => {
+      // Validation
+      if (!nameField.value || !emailField.value || !phoneField.value) {
+        alert("Please fill all the required fields!");
+        return;
+      }
+
+      // Fill in resume preview
+      rName.textContent = nameField.value;
+      rEmail.textContent = `📧 ${emailField.value}`;
+      rPhone.textContent = `📞 ${phoneField.value}`;
+      rEducation.textContent = eduField.value;
+      rExperience.textContent = expField.value;
+      rSkills.textContent = skillsField.value;
+
+      // Show generated resume
+      output.style.display = "block";
+      window.scrollTo({ top: output.offsetTop, behavior: "smooth" });
+    });
+
+    // 📥 DOWNLOAD AS PDF
+    document.getElementById("download-pdf").addEventListener("click", () => {
+      window.print(); // Quick method to download PDF
+    });
+  </script>
+</body>
+</html>

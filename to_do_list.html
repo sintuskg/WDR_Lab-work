@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple To-Do List</title>
+
   <style>
+    /* Basic page styling */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
@@ -12,11 +14,13 @@
       background-color: #fdfdfd;
     }
 
+    /* Center content and set fixed width */
     .container {
       width: 400px;
       margin: auto;
     }
 
+    /* Input box style */
     #taskInput {
       padding: 8px;
       width: 65%;
@@ -24,6 +28,7 @@
       outline: none;
     }
 
+    /* Add Task button style */
     #addBtn {
       padding: 9px 15px;
       background-color: pink;
@@ -32,12 +37,14 @@
       font-weight: bold;
     }
 
+    /* Task list container */
     #taskList {
       list-style: none;
       padding: 0;
       margin-top: 20px;
     }
 
+    /* Each task item box */
     li {
       display: flex;
       justify-content: space-between;
@@ -47,6 +54,7 @@
       margin-bottom: 8px;
     }
 
+    /* Task name text style */
     .taskName {
       font-weight: bold;
       color: blue;
@@ -54,6 +62,7 @@
       text-align: left;
     }
 
+    /* "Mark as Complete" button style */
     .completeBtn {
       background-color: green;
       color: white;
@@ -63,6 +72,7 @@
       margin-right: 5px;
     }
 
+    /* "Delete" button style */
     .deleteBtn {
       background-color: red;
       color: white;
@@ -73,63 +83,92 @@
   </style>
 </head>
 <body>
+
   <div class="container">
+    <!-- Input for new task -->
     <input type="text" id="taskInput" placeholder="Enter task name">
+
+    <!-- Button to add new task -->
     <button id="addBtn">Add Task</button>
 
+    <!-- Unordered list where tasks will appear -->
     <ul id="taskList"></ul>
   </div>
 
   <script>
+    // Array to store all tasks
     let tasks = [];
 
+    // Event listener for "Add Task" button
     document.getElementById('addBtn').addEventListener('click', addTask);
+
+    // Allow pressing Enter key to add task
     document.getElementById('taskInput').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') addTask();
     });
 
+    // Function to add a new task
     function addTask() {
       const taskInput = document.getElementById('taskInput');
       const taskName = taskInput.value.trim();
 
+      // Ignore if input is empty
       if (taskName === '') return;
 
+      // Add task to array
       tasks.push(taskName);
+
+      // Refresh the displayed task list
       displayTasks();
+
+      // Clear input field
       taskInput.value = '';
     }
 
+    // Function to display tasks on the page
     function displayTasks() {
       const taskList = document.getElementById('taskList');
-      taskList.innerHTML = '';
+      taskList.innerHTML = ''; // Clear previous list before re-rendering
 
+      // Loop through all tasks
       tasks.forEach((task, index) => {
+        // Create list item
         const li = document.createElement('li');
 
+        // Create span to hold task name
         const span = document.createElement('span');
         span.textContent = task;
         span.className = 'taskName';
 
+        // Create "Mark as Complete" button
         const completeBtn = document.createElement('button');
         completeBtn.textContent = 'Mark as Complete';
         completeBtn.className = 'completeBtn';
+
+        // When clicked, mark task as completed
         completeBtn.onclick = function () {
-          span.style.color = 'green';
-          completeBtn.textContent = 'Completed';
-          completeBtn.disabled = true;
+          span.style.color = 'green';          // Change text color to green
+          completeBtn.textContent = 'Completed'; // Change button text
+          completeBtn.disabled = true;         // Disable the button
         };
 
+        // Create "Delete" button
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
         deleteBtn.className = 'deleteBtn';
+
+        // When clicked, remove task from array and UI
         deleteBtn.onclick = function () {
-          tasks.splice(index, 1); // remove from array
-          displayTasks(); // re-render list
+          tasks.splice(index, 1);  // Remove from array
+          displayTasks();          // Re-render updated list
         };
 
+        // Add all elements to list item
         li.appendChild(span);
         li.appendChild(completeBtn);
         li.appendChild(deleteBtn);
+
+        // Add the list item to the task list
         taskList.appendChild(li);
       });
     }

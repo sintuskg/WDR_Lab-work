@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sum of two number</title>
+</head>
+<body>
+    <input type="button" value="addition" onclick="calculateSum()">
+    
+</body>
+<script>
+    function calculateSum(){
+        const num1 = parseInt(prompt("Enter the first number : ",0));
+        const num2 = parseInt(prompt("Enter the secound number : ",0));
+        if(isNaN(num1) || isNaN(num2)){
+            alert("Enter the numeric value");
+        }else{
+            alert(`Sum of ${num1} and ${num2} is : ${num1+num2}`);
+        }
+    }
+</script>
+</html>
